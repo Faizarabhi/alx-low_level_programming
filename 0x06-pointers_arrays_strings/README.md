@@ -1,0 +1,1 @@
+readme ponters arrays strings
