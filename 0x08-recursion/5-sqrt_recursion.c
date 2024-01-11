@@ -1,26 +1,29 @@
-#include "main.h"
+#include "holberton.h"
+
 /**
- * jadr - check the code
- * @a: 1st par
- * @b: 2nd par
- * Return: if true return b else return -1
+ * isSqrt - helper function for _sqrt_recursion
+ * @n: input number
+ * @i: iteratotr
+ * Return: square root of number
  */
-int jadr(int a, int b)
+
+int isSqrt(int n, int i)
 {
-	if (b * b == a)
-		return (b);
-	if (b * b > a)
+	if (i * i > n)
 		return (-1);
-	return (jadr(a, b + 1));
+	if (i * i == n)
+		return (i);
+	return (isSqrt(n, i + 1));
 }
+
 /**
- * _sqrt_recursion - Function
- * @n: parametre
- * Return: the jadr of n
- *
- *
+ * _sqrt_recursion - returns the natural square root of a number
+ * @n: input number
+ * Return: square root of number, -1 if false
  */
 int _sqrt_recursion(int n)
 {
-	return (jadr(n, 1));
+	if (n < 0)
+		return (-1);
+	return (isSqrt(n, 1));
 }

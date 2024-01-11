@@ -1,23 +1,18 @@
 #include <stdio.h>
-#include <stdlib.h>
-/*this programme print alphabet from a to z */
+
 /**
- * main - main block
- * does not accept any type of arguments
+ * main- prints out the alphabet in lowercase
  * Return: 0
  */
 int main(void)
 {
-	char c = 'a';
+char a = 'a';
 
-	while (c <= 'z')
-	{
-		putchar (c);
-		c++;
-
-	}
-
-putchar('\n');
-	return (0);
+while (a <= 'z')
+{
+putchar(a);
+a++;
 }
-
+putchar('\n');
+return (0);
+}

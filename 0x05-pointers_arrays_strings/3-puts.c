@@ -1,16 +1,14 @@
-#include "main.h"
+#include "holberton.h"
 /**
- * _puts - the function that print number of characters
- * @str: the parametre
- * Return: return the number of characters
+ * _puts - prints a string followed by  new line to stdout
+ * @str: string to be rinted
  */
 void _puts(char *str)
 {
-	int i;
-
-	for (i = 0; str[i] != '\0'; i++)
-	{
-		_putchar(str[i]);
-	}
-	_putchar('\n');
+while (*str)
+{
+_putchar(*str);
+str++;
+}
+_putchar('\n');
 }

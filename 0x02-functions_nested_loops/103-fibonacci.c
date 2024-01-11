@@ -1,24 +1,19 @@
 #include <stdio.h>
 /**
-  * main - sum even fibonacci numbers under 4 million.
-  * Return: Nothing.
-  */
+ * main - prints sum of fibonacci numbers under 4,000,000 & divisible by 2
+ * Return: 0
+ */
 int main(void)
 {
-	unsigned long count, i, j, k, sums;
+long fib1 = 1, fib2 = 2, sum = fib2, next;
 
-	i = sums = 0;
-	j = 1;
-	for (count = 0; count < 50; count++)
-	{
-		k = i + j;
-		i = j;
-		j = k;
-		if (k % 2 == 0 && k < 4000000)
-		{
-			sums += k;
-		}
-	}
-	printf("%lu\n", sums);
-	return (0);
+while (fib2 < 4000000)
+{
+next = fib1 + fib2;
+fib1 = fib2;
+fib2 = next;
+sum += (fib2 % 2 == 0) ? fib2 : 0;
+}
+printf("%li\n", sum);
+return (0);
 }

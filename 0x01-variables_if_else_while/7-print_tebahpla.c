@@ -1,23 +1,18 @@
 #include <stdio.h>
-#include <stdlib.h>
-/*this programme print alphabet from a to z */
+
 /**
- * main - main block
- * does not accept any type of arguments
+ * main - prints out the alphabets in reverse
  * Return: 0
  */
 int main(void)
 {
-	char c = 'z';
+char a = 'z';
 
-	while (c >= 'a')
-	{
-		putchar (c);
-		c--;
-
-	}
-
-putchar('\n');
-	return (0);
+while (a >= 'a')
+{
+putchar(a);
+a--;
 }
-
+putchar('\n');
+return (0);
+}

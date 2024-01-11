@@ -1,25 +1,16 @@
 #include <stdio.h>
-#include <stdlib.h>
-/*this programme print alphabet from a to z lower upper */
+
 /**
- * main - main block
- * does not accept any type of arguments
+ * main - prints out the alphabet in lowercase except for 'qe'
  * Return: 0
  */
 int main(void)
 {
-	char c = 'a';
+char c;
 
-	while (c <= 'z')
-	{
-		if (c != 'e' && c != 'q')
-		{
-			putchar(c);
-		}
-		c++;
-	}
-
-	putchar('\n');
-	return (0);
+for (c = 'a'; c <= 'z'; c++)
+if (c != 'e' && c != 'q')
+putchar(c);
+putchar('\n');
+return (0);
 }
-

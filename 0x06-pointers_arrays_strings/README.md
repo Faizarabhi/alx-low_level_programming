@@ -1,1 +1,1 @@
-this is a description about 0x06
+# 0x06-pointers_array_strings

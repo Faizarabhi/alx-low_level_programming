@@ -1,27 +1,29 @@
-#include "main.h"
+#include "holberton.h"
 
 /**
- * *rot13 - Change string.
- * @str: The string to be capitalized.
- *
- * Return: A pointer to the changed string.
+ * rot13 - encodes a string using rot13
+ * @s: input string
+ * Return: encoded string
  */
-char *rot13(char *str)
+char *rot13(char *s)
 {
-	char alp[] = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
-	char con[] = "NnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMm";
-	int i, j;
+	int i;
 
-	for (i = 0; str[i] != '\0'; i++)
+	char rot13[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	char ROT13[] = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
+	char *ptr = s;
+
+	while (*s)
 	{
-		for (j = 0; alp[j] != '\0'; j++)
+		for (i = 0; i <= 52; i++)
 		{
-			if (str[i] == alp[j])
+			if (*s == rot13[i])
 			{
-				str[i] = con[j];
+				*s = ROT13[i];
 				break;
 			}
 		}
+		s++;
 	}
-	return (str);
+	return (ptr);
 }

@@ -1,20 +1,28 @@
-#include "main.h"
+#include "holberton.h"
 /**
- * reverse_array - the function that print number of characters
- * @a: the parametre
- * @n: énd par
+ * swap_int - swaps the value of two integers
+ * @a: pointer a
+ * @b: pointer b
+ */
+void swap_int(int *a, int *b)
+{
+*a = *b + *a;
+*b = *a - *b;
+*a = *a - *b;
+}
+/**
+ * reverse_array - reverses the contents of an array of integers
+ * @a: array of integers
+ * @n: number of elements
  */
 void reverse_array(int *a, int n)
 {
-	int ch, i = 0, j = 0;
+int counter = 0;
 
-	for (i = n; i > 0; i--)
-	{
-		for (j = 0; j < (i - 1); j++)
-		{
-			ch = a[j + 1];
-			a[j + 1] = a[j];
-			a[j] = ch;
-		}
-	}
+while (counter < n / 2)
+{
+/*if you have an  array of n elements the last element is at n - 1*/
+swap_int(a + counter, a + (n - counter - 1));
+counter++;
+}
 }

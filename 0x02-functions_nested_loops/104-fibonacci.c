@@ -1,45 +1,56 @@
 #include <stdio.h>
 /**
-  * main - print the first 98 fibonacci numbers.
-  * Return: Nothing.
-  */
+ *numLength - returns the length of string
+ *@num: operand number
+ *Return: number of digits
+ */
+int numLength(int num)
+{
+int length = 0;
+
+if (!num)
+{
+return (1);
+}
+while (num)
+{
+num = num / 10;
+length += 1;
+}
+return (length);
+}
+/**
+ * main - prints the first 98 digits of the fibonacci series
+ * Return: 0
+ */
 int main(void)
 {
-	int count;
-	unsigned long i, j, k;
-	unsigned long m, n, p, carry;
+unsigned long fib1 = 1, fib2 = 2, next, nexto = 0;
+unsigned long mx = 100000000, fib1o = 0, fib2o = 0;
+short int i = 1, initial0s;
 
-	count = 0;
-	i = 0;
-	j = 1;
-	for (count = 1; count <= 91; count++)
-	{
-		k = i + j;
-		i = j;
-		j = k;
-		printf("%lu, ", k);
-	}
-	m = i % 1000;
-	i = i / 1000;
-	n = j % 1000;
-	j = j / 1000;
-	while (count <= 98)
-	{
-		carry = (m + n) / 1000;
-		p = (m + n) - carry * 1000;
-		k = (i + j) + carry;
-		m = n;
-		n = p;
-		i = j;
-		j = k;
-		if (p >= 100)
-			printf("%lu%lu", k, p);
-		else
-			printf("%lu0%lu", k, p);
-		if (count != 98)
-			printf(", ");
-		count++;
-	}
-	putchar('\n');
-	return (0);
+while (i <= 98)
+{
+if (fib1o > 0)
+printf("%lu", fib1o);
+initial0s = numLength(mx) - 1 - numLength(fib1);
+while (fib1o > 0 && initial0s > 0)
+{
+printf("%i", 0);
+initial0s--;
+}
+printf("%lu", fib1);
+next = (fib1 + fib2) % mx;
+nexto = fib1o + fib2o + (fib1 + fib2) / mx;
+fib1 = fib2;
+fib1o = fib2o;
+fib2 = next;
+fib2o = nexto;
+if (i != 98)
+printf(", ");
+else
+printf("\n");
+i++;
+}
+return (0);
 }

@@ -1,26 +1,29 @@
-#include "main.h"
+#include "holberton.h"
+
 /**
- * qisma - function
- * @a: 1st par
- * @b: 2nd par
- * Return: 1 or 0
+ * isPrime - helper function for is_prime_number
+ * @n: input number
+ * @i: iterator
+ * Return: 1 if true, 0 if false
  */
-int qisma(int a, int b)
+int isPrime(int n, int i)
 {
-	if (a == b)
+	if (i == 1)
 		return (1);
-	else if (a % b == 0)
+	if (n % i == 0)
 		return (0);
-	return (qisma(a, b + 1));
+	return (isPrime(n, i - 1));
 }
+
 /**
- * is_prime_number - function that return prime
- * @n: parametre
- * Return: 1 if prime and 0 if not
+ * is_prime_number - returns 1 if the input integer is a prime number,
+ * otherwise return 0
+ * @n: input number
+ * Return: 1 if true, 0 if false
  */
 int is_prime_number(int n)
 {
-	if (n <= 1)
+	if (n < 3)
 		return (0);
-	return (qisma(n, 2));
+	return (isPrime(n, n - 1));
 }

@@ -1,27 +1,27 @@
-#include "main.h"
+#include "holberton.h"
 /**
- * print_diagonal - the function
- * Return: Always t
- * @n: the parametre
+ * print_diagonal - print a diagonal line of  arg length
+ * @n: length of line
  */
 void print_diagonal(int n)
 {
-	int i, j;
+int i = 0, j;
 
-	if (n > 0)
-	{
-		for (i = 0; i < n; i++)
-		{
-			for (j = 0; j <= i; j++)
-			{
-				if (i == j)
-					_putchar('\\');
-				else
-					_putchar(' ');
-			}
-		_putchar('\n');
-		}
-	}
-	else
-		_putchar('\n');
+if (n > 0)
+{
+while (i < n)
+{
+for (j = 0; j < i; j++)
+{
+_putchar(' ');
+}
+_putchar('\\');
+_putchar('\n');
+i++;
+}
+}
+else
+{
+_putchar('\n');
+}
 }

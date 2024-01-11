@@ -1,23 +1,19 @@
 #include <stdio.h>
-#include <stdlib.h>
-/*this programme print alphabet from a to z */
+
 /**
- * main - main block
- * does not accept any type of arguments
+ * main - prints out all numbers under
+ * without using any char variables
  * Return: 0
  */
 int main(void)
 {
-	int n = '0';
+int i = 48;
 
-	while (n <= '9')
-	{
-		putchar (n);
-		n++;
-
-	}
-
-putchar('\n');
-	return (0);
+while (i < 58)
+{
+putchar(i);
+i++;
 }
-
+putchar('\n');
+return (0);
+}

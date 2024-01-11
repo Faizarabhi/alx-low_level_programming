@@ -1,28 +1,21 @@
-#include"main.h"
-
+#include "holberton.h"
 /**
- * more_numbers - print 0 - 14 ten times and you
- *		can only use _putchar three times
- *
- * Return: Always 0 (Success)
-*/
-
+ * more_numbers -prints 10 times the numbers 0-14
+ */
 void more_numbers(void)
 {
-	int num, row, count;
+int i, j;
 
-	for (row = 1; row <= 10; ++row)
-	{
-		for (count = 0; count <= 14; ++count)
-		{
-			num = count;
-			if (count > 9)
-			{
-				_putchar(1 + 48);
-				num = count % 10;
-			}
-			_putchar(num + 48);
-		}
-		_putchar('\n');
-	}
+for (i = 48; i < 58; i++)
+{
+for (j = 0; j < 15; j++)
+{
+if (j >= 10)
+{
+_putchar(j / 10 + 48);
+}
+_putchar(j % 10 + 48);
+}
+_putchar('\n');
+}
 }

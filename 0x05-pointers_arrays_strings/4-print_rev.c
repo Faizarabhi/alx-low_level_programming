@@ -1,18 +1,30 @@
-#include "main.h"
+#include "holberton.h"
 /**
- * print_rev - the function that print number of characters
- * @s: the parametre
- * Return: return No thing
+ * _strlen - returns the length of a string
+ *@s: string
+ *Return: length of string
+ */
+int _strlen(char *s)
+{
+char *p = s;
+
+while (*s)
+{
+s++;
+}
+return (s - p);
+}
+/**
+ * print_rev - prints the reverse of a string
+ * @s: string
  */
 void print_rev(char *s)
 {
-	int i;
+int length = _strlen(s);
 
-	for (i = 0; s[i] != '\0'; i++)
-		;
-	for (i = i - 1; s[i] != '\0'; i--)
-	{
-		_putchar(s[i]);
-	}
-	_putchar('\n');
+while (length--)
+{
+_putchar(*(s + length));
+}
+_putchar('\n');
 }

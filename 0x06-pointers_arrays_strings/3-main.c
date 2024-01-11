@@ -1,10 +1,8 @@
-#include "main.h"
+#include "holberton.h"
 #include <stdio.h>
-
 /**
- * main - check the code
- *
- * Return: Always 0.
+ * main - check ALX students code
+ * Return: Always 0
  */
 int main(void)
 {

@@ -1,25 +1,30 @@
-#include "main.h"
-
+#include "holberton.h"
 /**
- * *leet - Capitalizes all words of a string.
- * @str: The string to be capitalized.
- *
- * Return: A pointer to the changed string.
+ * leet - encodes a string into 1337
+ * @c: String
+ * Return: string that is encoded
  */
-char *leet(char *str)
+char *leet(char *c)
 {
-	char min[] = {97, 101, 111, 116, 108};
-	char maj[] = {65, 69, 79, 84, 76};
-	char conv[] = {52, 51, 48, 55, 49};
-	int i, j;
+	char *cp = c;
+	char key[] = {'A', 'E', 'O', 'T', 'L'};
+	int value[] = {4, 3, 0, 7, 1};
+	unsigned int i;
 
-	for (i = 0; str[i] != '\0'; i++)
+	while (*c)
 	{
-		for (j = 0; j < 5; j++)
+		for (i = 0; i < sizeof(key) / sizeof(char); i++)
 		{
-			if (str[i] == min[j] || str[i] == maj[j])
-				str[i] = conv[j];
+			/*32 is the difference between lower case letters and apper case letters*/
+			if (*c == key[i] || *c == key[i] + 32)
+			{
+				*c = 48 + value[i];
+			}
 		}
+		c++;
 	}
-	return (str);
+
+	return (cp);
+
 }
+

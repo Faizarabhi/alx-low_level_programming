@@ -1,20 +1,14 @@
 #include <stdio.h>
-#include <stdlib.h>
-/*this programme print numbers from 0 to 9 */
+
 /**
- * main - main block
- * does not accept any type of arguments
+ * main - prints base ten numbers
  * Return: 0
  */
 int main(void)
 {
-	int a;
-
-	for (a = 0; a < 10; a = a + 1)
-	{
-		printf("%d", a);
-	}
-	printf("\n");
-	return (0);
+int i;
+for (i = 0; i < 10; i++)
+printf("%i", i);
+printf("\n");
+return (0);
 }
-

@@ -1,22 +1,18 @@
-#include"main.h"
-
+#include "holberton.h"
 /**
- * print_line - print a straight line
- *
- * @n: is the number of times the _ character
- *     should be printed
-*/
-
+ * print_line - print line of argument length
+ * @n: integer for length of line
+ */
 void print_line(int n)
 {
-	int lnChr;
+int i;
 
-	if (n <= 0)
-		_putchar('\n');
-	else
-	{
-		for (lnChr = 1; lnChr <= n; ++lnChr)
-			_putchar('_');
-		_putchar('\n');
-	}
+if (n > 0)
+{
+for (i = 0; i < n; i++)
+{
+_putchar('_');
+}
+}
+_putchar('\n');
 }
