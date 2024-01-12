@@ -1,23 +1,31 @@
-#include "holberton.h"
+#include "main.h"
+#include <stdio.h>
 /**
- * _strcmp - compares two strings
- * @s1: first string
- * @s2: second string
- * Return: 1 if true, 0 if false
- */
+ * _strcmp - function that compare
+ * @s1: string 1 input to compare
+ * @s2: against this other string 2
+ *
+ * Return: 0 if s1 and s2 are equal
+ *
+ *
+ *
+*/
+
 int _strcmp(char *s1, char *s2)
 {
-int equal = 0;
+	int i, n;
 
-while (*s1)
-{
-if (*s1 != *s2)
-{
-equal = ((int) *s1 - 48) - ((int) *s2 - 48);
-break;
-}
-s1++;
-s2++;
-}
-return (equal);
+	for (i = 0; s1[i] != '\0' && s2[i] != '\0'; i++)
+	{
+		if (s1[i] !=  s2[i])
+		{
+			n = s1[i] -  s2[i];
+			break;
+		}
+		else
+		{
+			n = 0;
+		}
+	}
+	return (n);
 }

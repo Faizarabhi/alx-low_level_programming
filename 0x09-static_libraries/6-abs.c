@@ -1,10 +1,12 @@
-#include "holberton.h"
+#include "main.h"
 /**
- * _abs - returns absolute value of n
- * @n: integer to be tested
- * Return: abs(n)
+ * _abs - calculate the absolute value of the number from zero.
+ * @a: the integer to be converted.
+ * Return: absolute value of the input number.
  */
-int _abs(int n)
+int _abs(int a)
 {
-return (n < 0 ? -1 * n : n);
+	if (a < 0)
+		a = a * -1;
+	return (a);
 }

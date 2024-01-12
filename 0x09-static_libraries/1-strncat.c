@@ -1,53 +1,31 @@
-#include <stdio.h>
-#include "holberton.h"
+#include"main.h"
 /**
- * _strlen - returns the length of a string
- * @str: string
- * Return: return the length
- */
-int _strlen(char *str)
-{
-int length = 0;
+ * _strncat - function that concatinate n strings
+ * @dest: pointer to destination input
+ * @src: pointer to source input
+ * @n: tne num of string
+ * Return: pointer to resulting string @dest
+*/
 
-while (*str)
-{
-str++;
-length++;
-}
-return (length);
-}
-/**
- * _strncat - conctenates two strings
- * @dest: destination pointer
- * @src: pointer to a string
- * @n: amount to be concatenated
- * Return: concatenated string
- */
 char *_strncat(char *dest, char *src, int n)
 {
-char *cat  = dest + _strlen(dest);
-int length;
+	int a, b;
 
-if (n > _strlen(src) + _strlen(dest))
-{
-length = _strlen(dest) + _strlen(src);
-}
-else
-{
-length = _strlen(dest) + n;
-}
-while (*src && n > 0)
-{
-*cat += *src;
-src++;
-cat++;
-n--;
-}
-if (n > 0)
-{
-*cat += '\0';
-}
-cat -= (length);
-*dest = *cat;
-return (cat);
+	a = 0;
+	while (dest[a])
+	{
+		a++;
+	}
+	for (b = 0; src[b] != '\0'; b++)
+	{
+		if (n > 0)
+		{
+			dest[a] = src[b];
+			a++;
+			n--;
+		}
+	}
+	dest[a] = '\0';
+
+	return (dest);
 }
