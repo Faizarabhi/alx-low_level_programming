@@ -1,70 +1,104 @@
-#include <stdlib.h>
-#include <string.h>
+#include "holberton.h"
 
-char **strtow(char *str) {
-    // Check if the input string is NULL or empty
-    if (str == NULL || *str == '\0') {
-        return NULL;
-    }
+/**
+ * strtow - splits a string into words
+ * @str: string of words to be split
+ * Return: double pointer to strings
+ */
+char **strtow(char *str)
+{
+	char **ptr;
+	int i, k, len, start, end, j = 0;
+	int words =  countWords(str);
 
-    // Allocate memory for an array of character pointers
-    char **words = (char **)malloc(sizeof(char *));
-    if (words == NULL) {
-        return NULL;  // Memory allocation failed
-    }
+	if (!str || !countWords(str))
+		return (NULL);
+	ptr = (char **)malloc(sizeof(char *) * (words ) + 1);
+	if (!ptr)
+		return (NULL);
+	for (i = 0; i < words; i++)
+	{
+		start = startIndex(str, j);
+		end = endIndex(str, start);
+		len = end - start;
+		ptr[i] = malloc(sizeof(char) * (len + 1));
+		if (!ptr[i])
+		{
+			i -= 1;
+			while (i >= 0)
+			{
+				free(ptr[i]);
+					i--;
+			}
+			free(ptr);
+			return (NULL);
+		}
+		for (k = 0; k < len; k++)
+			ptr[i][k] = str[start++];
+		ptr[i][k++] = '\0';
+		j = end + 1;
+	}
+	ptr[i] = NULL;
+	return (ptr);
+}
 
-    // Initialize variables
-    int wordCount = 0;
-    int i = 0;
+/**
+ * isSpace - determines if character is a space or not
+ * @c: input char
+ * Return: 1 if true or 0 or not
+ */
+int isSpace(char c)
+{
+	return (c == ' ');
+}
 
-    // Loop through the input string
-    while (str[i] != '\0') {
-        // Skip leading spaces
-        while (str[i] == ' ') {
-            i++;
-        }
+/**
+ * startIndex - returns first index of non-space char
+ * @s: input string
+ * @index: starting index
+ * Return: index of first non-space char
+ */
+int startIndex(char *s, int index)
+{
 
-        // Check for the end of the string
-        if (str[i] == '\0') {
-            break;
-        }
+	while (isSpace(*(s + index)))
+		index++;
+	return (index);
+}
 
-        // Find the length of the current word
-        int start = i;
-        while (str[i] != ' ' && str[i] != '\0') {
-            i++;
-        }
-        int end = i;
+/**
+ * endIndex - returns last index of non-space char
+ * @s: input string
+ * @index: starting index
+ * Return: index of last index of non-space char
+ */
+int endIndex(char *s, int index)
+{
+	while (!isSpace(*(s + index)))
+		index++;
+	return (index);
+}
 
-        // Allocate memory for the current word
-        words[wordCount] = (char *)malloc((end - start + 1) * sizeof(char));
-        if (words[wordCount] == NULL) {
-            // Memory allocation failed, free previously allocated memory and return NULL
-            for (int j = 0; j < wordCount; j++) {
-                free(words[j]);
-            }
-            free(words);
-            return NULL;
-        }
+/**
+ * countWords - counts numbers of words in string
+ * @s: input string
+ * Return: number of words
+ */
+int countWords(char *s)
+{
+	int wordOn = 0;
+	int words = 0;
 
-        // Copy the current word into the allocated memory
-        strncpy(words[wordCount], &str[start], end - start);
-        words[wordCount][end - start] = '\0';  // Null-terminate the word
-
-        // Resize the array of pointers to accommodate the new word
-        wordCount++;
-        words = (char **)realloc(words, (wordCount + 1) * sizeof(char *));
-        if (words == NULL) {
-            // Memory reallocation failed, free previously allocated memory and return NULL
-            for (int j = 0; j < wordCount; j++) {
-                free(words[j]);
-            }
-            return NULL;
-        }
-    }
-
-    // Add a NULL pointer at the end to indicate the end of the array
-    words[wordCount] = NULL;
-
-    return words;
+	while (*s)
+	{
+		if (isSpace(*s) && wordOn)
+			wordOn = 0;
+		else if (!isSpace(*s) && !wordOn)
+		{
+			wordOn = 1;
+			words++;
+		}
+		s++;
+	}
+	return (words);
 }
