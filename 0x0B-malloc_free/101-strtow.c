@@ -1,104 +1,97 @@
-#include "holberton.h"
+#include "main.h"
+#include <stdlib.h>
+
+void util(char **, char *);
+void create_word(char **, char *, int, int, int);
 
 /**
- * strtow - splits a string into words
- * @str: string of words to be split
- * Return: double pointer to strings
+ * strtow - splits a string into w.
+ * @str: the string
+ *
+ * Return: returns a pointer to an array of strings (w)
  */
 char **strtow(char *str)
 {
-	char **ptr;
-	int i, k, len, start, end, j = 0;
-	int words =  countWords(str);
+	int i, f, len;
+	char **w;
 
-	if (!str || !countWords(str))
+	if (str == NULL || str[0] == '\0' || (str[0] == ' ' && str[1] == '\0'))
 		return (NULL);
-	ptr = (char **)malloc(sizeof(char *) * (words ) + 1);
-	if (!ptr)
+
+	i = f = len = 0;
+	while (str[i])
+	{
+		if (f == 0 && str[i] != ' ')
+			f = 1;
+		if (i > 0 && str[i] == ' ' && str[i - 1] != ' ')
+		{
+			f = 0;
+			len++;
+		}
+		i++;
+	}
+
+	len += f == 1 ? 1 : 0;
+	if (len == 0)
 		return (NULL);
-	for (i = 0; i < words; i++)
+
+	w = (char **)malloc(sizeof(char *) * (len + 1));
+	if (w == NULL)
+		return (NULL);
+
+	util(w, str);
+	w[len] = NULL;
+	return (w);
+}
+
+/**
+ * util - a util function for fetching w into an array
+ * @w: the strings array
+ * @str: the string
+ */
+void util(char **w, char *str)
+{
+	int i, j, s, f;
+
+	i = j = f = 0;
+	while (str[i])
 	{
-		start = startIndex(str, j);
-		end = endIndex(str, start);
-		len = end - start;
-		ptr[i] = malloc(sizeof(char) * (len + 1));
-		if (!ptr[i])
+		if (f == 0 && str[i] != ' ')
 		{
-			i -= 1;
-			while (i >= 0)
-			{
-				free(ptr[i]);
-					i--;
-			}
-			free(ptr);
-			return (NULL);
+			s = i;
+			f = 1;
 		}
-		for (k = 0; k < len; k++)
-			ptr[i][k] = str[start++];
-		ptr[i][k++] = '\0';
-		j = end + 1;
-	}
-	ptr[i] = NULL;
-	return (ptr);
-}
 
-/**
- * isSpace - determines if character is a space or not
- * @c: input char
- * Return: 1 if true or 0 or not
- */
-int isSpace(char c)
-{
-	return (c == ' ');
-}
-
-/**
- * startIndex - returns first index of non-space char
- * @s: input string
- * @index: starting index
- * Return: index of first non-space char
- */
-int startIndex(char *s, int index)
-{
-
-	while (isSpace(*(s + index)))
-		index++;
-	return (index);
-}
-
-/**
- * endIndex - returns last index of non-space char
- * @s: input string
- * @index: starting index
- * Return: index of last index of non-space char
- */
-int endIndex(char *s, int index)
-{
-	while (!isSpace(*(s + index)))
-		index++;
-	return (index);
-}
-
-/**
- * countWords - counts numbers of words in string
- * @s: input string
- * Return: number of words
- */
-int countWords(char *s)
-{
-	int wordOn = 0;
-	int words = 0;
-
-	while (*s)
-	{
-		if (isSpace(*s) && wordOn)
-			wordOn = 0;
-		else if (!isSpace(*s) && !wordOn)
+		if (i > 0 && str[i] == ' ' && str[i - 1] != ' ')
 		{
-			wordOn = 1;
-			words++;
+			create_word(w, str, s, i, j);
+			j++;
+			f = 0;
 		}
-		s++;
+
+		i++;
 	}
-	return (words);
+
+	if (f == 1)
+		create_word(w, str, s, i, j);
+}
+
+/**
+ * create_word - creates a word and insert it into the array
+ * @w: the array of strings
+ * @str: the string
+ * @s: the sing index of the word
+ * @end: the stopping index of the word
+ * @index: the index of the array to insert the word
+ */
+void create_word(char **w, char *str, int s, int end, int index)
+{
+	int i, j;
+
+	i = end - s;
+	w[index] = (char *)malloc(sizeof(char) * (i + 1));
+
+	for (j = 0; s < end; s++, j++)
+		w[index][j] = str[s];
+	w[index][j] = '\0';
 }
