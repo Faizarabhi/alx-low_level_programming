@@ -1,49 +1,51 @@
+#include <stdio.h>
 #include "main.h"
-#include <stdlib.h>
 
 /**
- * argstostr - concatenates all the arguments of your program.
- * @ac: arguments count
- * @av: arguments vector
- *
- * Return: a pointer to a new string, or NULL if it fails
+ * _strlen - returns the length of a string
+ * @s: string s
+ * Return: length of string
+ */
+int _strlen(char *s)
+{
+	int ln = 0;
+
+	while (*s++)
+		ln++;
+	return (ln);
+}
+/**
+ * argstostr - concatenates all the arguments of your program
+ * @ac: argument count
+ * @av: argument vector
+ * Return: concatenated string
  */
 char *argstostr(int ac, char **av)
 {
-	char *str, *s;
-	int i, j, k, len = 0;
+	int i, j, ln, tot;
+	int n = 0;
+	char *ptr;
 
-	if (ac == 0 || av == NULL)
+	if (!ac || !av)
 		return (NULL);
-
+	tot = 0;
 	for (i = 0; i < ac; i++)
 	{
-		s = av[i];
-		j = 0;
-
-		while (s[j++])
-			len++;
-		len++;
+		ln = _strlen(av[i]) + 1;
+		tot += ln;
 	}
-
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (str == NULL)
+	ptr = malloc(sizeof(char) * tot + 1);
+	if (!ptr)
 		return (NULL);
-
-	for (i = 0, j = 0; i < ac && j < len; i++)
+	for (i = 0; i < ac; i++)
 	{
-		s = av[i];
-		k = 0;
-
-		while (s[k])
+		ln = _strlen(av[i]);
+		for (j = 0; j < ln; j++, n++)
 		{
-			str[j] = s[k];
-			k++;
-			j++;
+			ptr[n] = av[i][j];
 		}
-		str[j++] = '\n';
+		ptr[n++] = '\n';
 	}
-	str[j] = '\0';
-
-	return (str);
+	ptr[n] = '\0';
+	return (ptr);
 }
