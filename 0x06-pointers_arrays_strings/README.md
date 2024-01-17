@@ -1,1 +1,3 @@
-# 0x06-pointers_array_strings
+Readme for this Projects.
+Pointers array and strings.
+Various task completed

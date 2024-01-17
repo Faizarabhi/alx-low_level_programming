@@ -1,53 +1,49 @@
-#include <stdio.h>
-#include "holberton.h"
+#include "main.h"
+#include <stdlib.h>
 
 /**
- * _strlen - returns the length of a string
- * @s: string s
- * Return: length of string
- */
-int _strlen(char *s)
-{
-	int len = 0;
-
-	while (*s++)
-		len++;
-
-	return (len);
-}
-
-/**
- * argstostr - concatenates all the arguments of your program
- * @ac: argument count
- * @av: argument vector
- * Return: concatenated string
+ * argstostr - concatenates all the arguments of your program.
+ * @ac: arguments count
+ * @av: arguments vector
+ *
+ * Return: a pointer to a new string, or NULL if it fails
  */
 char *argstostr(int ac, char **av)
 {
-	int i, j, len, total;
-	int m = 0;
-	char *ptr;
+	char *str, *s;
+	int i, j, k, len = 0;
 
-	if (!ac || !av)
+	if (ac == 0 || av == NULL)
 		return (NULL);
-	total = 0;
+
 	for (i = 0; i < ac; i++)
 	{
-		len = _strlen(av[i]) + 1;
-		total += len;
+		s = av[i];
+		j = 0;
+
+		while (s[j++])
+			len++;
+		len++;
 	}
-	ptr = malloc(sizeof(char) * total + 1);
-	if (!ptr)
+
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (str == NULL)
 		return (NULL);
-	for (i = 0; i < ac; i++)
+
+	for (i = 0, j = 0; i < ac && j < len; i++)
 	{
-		len = _strlen(av[i]);
-		for (j = 0; j < len; j++, m++)
+		s = av[i];
+		k = 0;
+
+		while (s[k])
 		{
-			ptr[m] = av[i][j];
+			str[j] = s[k];
+			k++;
+			j++;
 		}
-		ptr[m++] = '\n';
+		str[j++] = '\n';
 	}
-	ptr[m] = '\0';
-	return (ptr);
+	str[j] = '\0';
+
+	return (str);
 }

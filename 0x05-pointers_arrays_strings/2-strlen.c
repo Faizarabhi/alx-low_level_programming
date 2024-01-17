@@ -1,17 +1,16 @@
-#include "holberton.h"
+#include "main.h"
 /**
- * _strlen - returns the length of a string
- * @s: string
- * Return: length of string
+ * _strlen - return the length of a string
+ * Owned By Bwave
+ * @s: char to check
+ * Description: this will return the length of a string
+ * Return: 0 is success
  */
 int _strlen(char *s)
 {
-int length = 0;
+	int a = 0;
 
-while (*s)
-{
-length += 1;
-s += 1;
-}
-return (length);
+	for (; *s++;)
+		a++;
+	return (a);
 }

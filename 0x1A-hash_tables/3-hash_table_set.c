@@ -1,68 +1,73 @@
 #include "hash_tables.h"
 
 /**
- * str_copy - Creates a copy of a given string.
- * @s: The string to copy.
+ * make_hash_node - creates a new hash node
+ * @key: key for the node
+ * @value: for the node
  *
- * Return: A pointer to the created string, otherwise NULL.
+ * Return: the new node, or NULL on failure
  */
-char *str_copy(const char *s)
+hash_node_t *make_hash_node(const char *key, const char *value)
 {
-	int i, len;
-	char *s_c = NULL;
+	hash_node_t *node;
 
-	if (s != NULL)
+	node = malloc(sizeof(hash_node_t));
+	if (node == NULL)
+		return (NULL);
+	node->key = strdup(key);
+	if (node->key == NULL)
 	{
-		len = strlen(s);
-		s_c = malloc(sizeof(char) * (len + 1));
-		if (s_c != NULL)
-		{
-			for (i = 0; i < len; i++)
-				s_c[i] = s[i];
-			s_c[i] = '\0';
-		}
+		free(node);
+		return (NULL);
 	}
-	return (s_c);
+	node->value = strdup(value);
+	if (node->value == NULL)
+	{
+		free(node->key);
+		free(node);
+		return (NULL);
+	}
+	node->next = NULL;
+	return (node);
 }
 
+
 /**
- * hash_table_set - Adds an element to a given hash table.
- * @ht: The hash table that will contain the element.
- * @key: The key of the element to add.
- * @value: The value of the element to add.
+ * hash_table_set - sets a key to a value in the hash table
+ * @ht: hash table to add elemt to
+ * @key: key for the data
+ * @value: data to store
  *
- * Return: 1 if the addition was successful, otherwise 0.
+ * Return: 1 if successful, 0 otherwise
  */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	unsigned long idx;
-	hash_node_t *tmp = NULL, *new_node = NULL;
+	unsigned long int index;
+	hash_node_t *hash_node, *tmp;
+	char *new_value;
 
-	if ((ht != NULL) && (ht->array != NULL)
-		&& (key != NULL) && (strlen(key) > 0))
+	if (ht == NULL || ht->array == NULL || ht->size == 0 ||
+	    key == NULL || strlen(key) == 0 || value == NULL)
+		return (0);
+	index = key_index((const unsigned char *)key, ht->size);
+	tmp = ht->array[index];
+	while (tmp != NULL)
 	{
-		idx = key_index((unsigned char *)key, ht->size);
-		tmp = ht->array[idx];
-		while (tmp != NULL)
+		if (strcmp(tmp->key, key) == 0)
 		{
-			if (strcmp(tmp->key, key) == 0)
-			{
-				free(tmp->value);
-				tmp->value = str_copy(value);
-				return (1);
-			}
-			tmp = tmp->next;
-		}
-		tmp = ht->array[idx];
-		new_node = malloc(sizeof(hash_node_t));
-		if (new_node != NULL)
-		{
-			new_node->key = str_copy(key);
-			new_node->value = str_copy(value);
-			new_node->next = tmp;
-			ht->array[idx] = new_node;
+			new_value = strdup(value);
+			if (new_value == NULL)
+				return (0);
+			free(tmp->value);
+			tmp->value = new_value;
 			return (1);
 		}
+		tmp = tmp->next;
 	}
-	return (0);
+	hash_node = make_hash_node(key, value);
+	if (hash_node == NULL)
+		return (0);
+	hash_node->next = ht->array[index];
+	ht->array[index] = hash_node;
+	return (1);
 }

@@ -1,21 +1,21 @@
-#include "holberton.h"
-
+#include "main.h"
 /**
- * string_toupper - changes all lowercase letters of a string to
- * uppercase
- * @s: string to be passed
- * Return: capitalized string
+ * string_toupper - change lowercase to uppercase
+ * @s:string
+ * Return:char
  */
 char *string_toupper(char *s)
 {
-	char *ptr = s;
 
-	while (*s)
+	int i;
+
+i = 0;
+	while (*(s + i))
 	{
-		if (*s >= 97 && *s <= 122)
-			*s -= 32;
-		s++;
+		if (*(s + i) >= 'a' && *(s + i) <= 'z')
+			*(s + i) -= 'a' - 'A';
+		i++;
 	}
-	return (ptr);
+	return (s);
 }
-
+/*Bwave ICT */

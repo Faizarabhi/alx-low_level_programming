@@ -1,25 +1,38 @@
-#include "holberton.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 /**
- * main - adds all positive numbers and prints it
+ * main - adds positive numbers.
  * @argc: argument count
- * @argv: argument vector
- * Return: 0 if no errors, 1 if invalid argument
+ * @argv: arguments
+ *
+ * Return: 0
  */
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
-	int i, j, res = 0;
+	int i, n, sum = 0;
+	char *flag;
 
-	if (argc > 1)
-		for (i = 1; i < argc; i++)
+	if (argc < 2)
+	{
+		printf("0\n");
+		return (0);
+	}
+
+	for (i = 1; argv[i]; i++)
+	{
+		n = strtol(argv[i], &flag, 10);
+		if (*flag)
 		{
-			for (j = 0; argv[i][j]; j++)
-				if (argv[i][j] < '0' || argv[i][j] > '9')
-					return (printf("Error\n"), 1);
-			res += atoi(argv[i]);
+			printf("Error\n");
+			return (1);
 		}
-	printf("%i\n", res);
+		else
+		{
+			sum += n;
+		}
+	}
+	printf("%d\n", sum);
+
 	return (0);
 }

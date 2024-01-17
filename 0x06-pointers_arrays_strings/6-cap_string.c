@@ -1,55 +1,31 @@
-#include "holberton.h"
-#include <stdio.h>
+#include "main.h"
 
 /**
- * isLower - determines whether ascii is lowercase
- * @c: character
- * Return: 1 if true, 0 if false
- */
-int isLower(char c)
-{
-	return (c >= 97 && c <= 122);
-}
-
-/**
- * isDelimiter - determines whether ascii is a delimiter
- * @c: character
- * Return: 1 if true, 0 if false
- */
-int isDelimiter(char c)
-{
-	int i;
-	char delimiter[] = " \t\n,.!?\"(){}";
-
-	for (i = 0; i < 12; i++)
-		if (c == delimiter[i])
-			return (1);
-	return (0);
-}
-
-/**
- * cap_string - capitalizes all words of a string
- * @s: input string
- * Return: string with capitalized words
+ * cap_string - capitalizes all words in a string
+ * @s: string
+ * Return: address of s
  */
 char *cap_string(char *s)
 {
-	char *ptr = s;
-	int foundDelimit = 1;
+	int i = 0, j;
+	char a[] = " \t\n,;.!?\"(){}";
 
-	while (*s)
+	while (*(s + i))
 	{
-		if (isDelimiter(*s))
-			foundDelimit = 1;
-		else if (isLower(*s) && foundDelimit)
+		if (*(s + i) >= 'a' && *(s + i) <= 'z')
 		{
-			*s -= 32;
-			foundDelimit = 0;
+			if (i == 0)
+				*(s + i) -= 'a' - 'A';
+			else
+			{
+				for (j = 0; j <= 12; j++)
+				{
+					if (a[j] == *(s + i - 1))
+						*(s + i) -= 'a' - 'A';
+				}
+			}
 		}
-		else
-			foundDelimit = 0;
-		s++;
+		i++;
 	}
-	return (ptr);
+	return (s);
 }
-

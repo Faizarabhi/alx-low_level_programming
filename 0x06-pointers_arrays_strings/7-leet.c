@@ -1,30 +1,25 @@
-#include "holberton.h"
+#include "main.h"
+
 /**
  * leet - encodes a string into 1337
- * @c: String
- * Return: string that is encoded
+ * @s: string to encode
+ *
+ * Return: address of s
  */
-char *leet(char *c)
+char *leet(char *s)
 {
-	char *cp = c;
-	char key[] = {'A', 'E', 'O', 'T', 'L'};
-	int value[] = {4, 3, 0, 7, 1};
-	unsigned int i;
+	int i, j;
+	char a[] = "aAeEoOtTlL";
+	char b[] = "4433007711";
 
-	while (*c)
+	for (i = 0; *(s + i); i++)
 	{
-		for (i = 0; i < sizeof(key) / sizeof(char); i++)
+		for (j = 0; j <= 9; j++)
 		{
-			/*32 is the difference between lower case letters and apper case letters*/
-			if (*c == key[i] || *c == key[i] + 32)
-			{
-				*c = 48 + value[i];
-			}
+			if (a[j] == s[i])
+				s[i] = b[j];
 		}
-		c++;
 	}
-
-	return (cp);
-
+	return (s);
 }
-
+/* Doing hard things is a must */

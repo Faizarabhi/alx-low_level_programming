@@ -1,11 +1,13 @@
-#include "holberton.h"
+#include "main.h"
+
 /**
- * add - adds parameters together
- * @i: first integer
- * @j: second integer
- * Return: returns i + j
+ * add - Adds two integers.
+ * @num1: The first integer to be added.
+ * @num2: The second integer to be added.
+ *
+ * Return: The result of the addition.
  */
-int add(int i, int j)
+int add(int num1, int num2)
 {
-return (i + j);
+	return (num1 + num2);
 }

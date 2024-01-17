@@ -1,26 +1,20 @@
-#include "holberton.h"
 #include <stdio.h>
+#include "main.h"
 /**
- * main - program prints out the highest prime
- * Return: 0
- */
+ * main - prints the largest prime factor of 612852475143
+ * Bwave ICT / Bright Daniel
+ * Return: always 0
+ **/
+
 int main(void)
 {
-int i = 2;
-long n = 612852475143;
+	unsigned long int i, n = 612852475143;
 
-while (i < n)
-{
-while (n % i == 0)
-{
-if (n == i)
-{
-break;
-}
-n /= i;
-}
-i++;
-}
-printf("%lu\n", n);
-return (0);
+	for (i = 3; i < 782849; i = i + 2)
+	{
+		while ((n % i == 0) && (n != i))
+			n = n / i;
+	}
+	printf("%lu\n", n);
+	return (0);
 }

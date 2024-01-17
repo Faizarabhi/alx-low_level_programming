@@ -1,21 +1,19 @@
-#include "holberton.h"
+#include "main.h"
+
 /**
- * print_most_numbers - print 0-9 excluding 2 and 4
- */
+*print_most_numbers - prints
+* owned by Bwave ICT
+*Return: void
+*/
+
 void print_most_numbers(void)
 {
-int i;
+	char c;
 
-for (i = 48; i < 58; i++)
-{
-if (i == 50 || i == 52)
-{
-continue;
-}
-else
-{
-_putchar(i);
-}
-}
-_putchar('\n');
+	for (c = '0'; c <= '9'; c++)
+	{
+	if (!(c == '2' || c == '4'))
+	_putchar(c);
+	}
+	_putchar('\n');
 }
