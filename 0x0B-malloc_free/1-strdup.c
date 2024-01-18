@@ -1,4 +1,6 @@
 #include "main.h"
+#include <stdlib.h>
+
 /**
  * *_strdup - function creat array
  * @str: size of the array
