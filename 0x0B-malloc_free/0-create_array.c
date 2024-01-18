@@ -7,7 +7,8 @@
  * @c: character to fill the array with
  * Return: returns the created array or NULL if allocation fails
  */
-char *create_array(unsigned int size, char c) {
+char *create_array(unsigned int size, char c)
+{
     unsigned int i;
     char *ptr;
 
