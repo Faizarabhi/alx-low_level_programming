@@ -1,4 +1,6 @@
 #include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
 /**
  * *str_concat - pointer on s
  * @s1: 1st strings
