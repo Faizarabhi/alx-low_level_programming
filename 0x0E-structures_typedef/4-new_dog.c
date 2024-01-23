@@ -1,35 +1,46 @@
 #include "dog.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
-
 /**
- * new_dog - function to create a new dog
- * @name: pointer to the name of the dog
- * @age: age of the dog
- * @owner: pointer to the owner of the dog
- * Return: pointer to the new dog structure
+ * new_dog - function
+ * @name: the par
+ * @age: the par
+ * @owner: the par
+ * Return: pointer wich point on qtruct "dog_t"
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-dog_t *new_dog;
+	unsigned int n, o, i;
+	dog_t *dog;
 
-new_dog = malloc(sizeof(dog_t));
-if (new_dog == NULL)
-return (NULL);
-new_dog->name = strdup(name);
-if (new_dog->name == NULL)
-{
-free(new_dog);
-return (NULL);
-}
-new_dog->age = age;
-new_dog->owner = strdup(owner);
-if (new_dog->owner == NULL)
-{
-free(new_dog->name);
-free(new_dog);
-return (NULL);
-}
-return (new_dog);
+	if (name == NULL || owner == NULL)
+		return (NULL);
+	dog = malloc(sizeof(dog_t));
+	if (dog == NULL)
+		return (NULL);
+	for (n = 0; name[n]; n++)
+	;
+	n++;
+	dog->name = malloc(n * sizeof(char));
+	if (dog->name == NULL)
+	{
+		free(dog);
+		return (NULL);
+	}
+	for (i = 0; i < n; i++)
+		dog->name[i] = name[i];
+	dog->age = age;
+	for (o = 0; owner[o]; o++)
+	;
+	o++;
+	dog->owner = malloc(o * sizeof(char));
+	if (dog->owner == NULL)
+	{
+		free(dog->name);
+		free(dog);
+		return (NULL);
+	}
+	for (i = 0; i < o; i++)
+		dog->owner[i] = owner[i];
+	return (dog);
 }
