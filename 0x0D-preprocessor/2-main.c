@@ -11,5 +11,5 @@ int main(void)
 {
 printf(__FILE__);
 printf("\n");
-return 0;
+return (0);
 }
